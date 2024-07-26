@@ -64,7 +64,7 @@ if( -not $analysisId ) {
 
     } # END ForEach( $cloud in $aClouds )
 
-    Write-Output $aAnalyses
+    $aAnalyses | Out-Host
 
     Exit
 } # END if( -not $analysisId ) {

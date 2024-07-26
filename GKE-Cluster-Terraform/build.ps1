@@ -12,7 +12,7 @@ terraform init -upgrade
 Write-Host
 
 Write-Host Applying Terraform plan -ForegroundColor Cyan
-terraform apply -auto-approve
+terraform apply --auto-approve
 
 Write-Host 
 
