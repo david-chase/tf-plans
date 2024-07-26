@@ -1,6 +1,5 @@
-$sGkeProject = "gke-testing-430322"
 $sClusterName = "k8master"
-$sRegion = "northamerica-northeast2-a"
+$sResourceGroup = "k8master-rg"
 
 # Start a timer
 $oStopWatch = New-Object -TypeName System.Diagnostics.Stopwatch
@@ -16,16 +15,13 @@ terraform apply -auto-approve
 
 Write-Host 
 
-Write-Host Setting GCP project -ForegroundColor Cyan
-gcloud config set project $sGkeProject
-
-Write-Host 
-
 Write-Host Updating ~/.kube/config -ForegroundColor Cyan
-gcloud container clusters get-credentials $sClusterName --region=$sRegion
+az aks get-credentials --resource-group $sResourceGroup --name $sClusterName --file ~\.kube\config
 
 Write-Host 
 
 # Stop the timer
 $oStopWatch.Stop()
 Write-Host Minutes elapsed: $oStopWatch.Elapsed.Minutes -ForegroundColor Cyan
+
+[console]::beep(500,300)
