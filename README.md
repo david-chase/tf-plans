@@ -24,7 +24,7 @@ For GCP, you must export the credentials for your test project in json format.  
 
 Folder Contents
 ---------------
-The contents of each folder are similar and follow the following general format:
+The contents of each folder are similar and follow this general format:
 
 | File | Purpose |
 | ---- | ------- |
@@ -36,3 +36,8 @@ The contents of each folder are similar and follow the following general format:
 | providers.tf | Contains the definitions for any providers |
 | terraform.tfvars | Declares any additional variables used in the demo |
 | variables.tf | Declares any variables used in the demo, including "densify_recommendations" |
+
+Comments
+--------
+* To make permanent changes to the main.tf file you need to make them in main.tf.original.  Any changes made in main.tf itself will be overwritten when you run destroy.ps1.
+* Do not overwrite the densify.auto.tfvars files in each folder.  Some of the data in partner1 is stale and (for example) references instance types that are no longer available ot invalid instance names.  I've manually modified the contents of densify.auto.tfvars so that it doesn't generate errors.  This means that in some cases there will be small differences between what you see in the UI for partner1 and what you see in your demo environment.  Sorry, can't be avoided.
