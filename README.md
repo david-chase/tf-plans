@@ -7,7 +7,8 @@ This repo contains a set of Terraform / OpenTofu infrastructure files and script
 
 Folders
 -------
-credentials - This folder holds your GCP credentials.  
+    credentials
+This folder holds your GCP credentials.  
 Iaas-AWS - Builds 3 VMs in AWS  
 Iaas-Azure - Builds 3 VMs in Azure  
 Iaas-GCE - Builds 3 VMs in GCE  
