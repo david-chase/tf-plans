@@ -1,7 +1,7 @@
+<img src="https://www.densify.com/wp-content/uploads/densify.png" width="250">
+
 tf-plans
 ========
-
-<img src="https://www.densify.com/wp-content/uploads/densify.png" width="250">
 
 This repo contains a set of Terraform / OpenTofu infrastructure files and scripts to build demo environments in AWS, Azure, and GCP that mirror a small portion of the infrastructure in the Densify "partner1" instance.  These environments can then be used to demo automating Densify recommendations using Terraform, or simply be used as test environments.
 
