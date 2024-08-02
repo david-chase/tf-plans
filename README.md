@@ -37,7 +37,7 @@ The contents of each folder are similar and follow this general format:
 | densify.auto.tfvars | Contains an export of a single Densify analysis in Terraform format |
 | destroy.ps1 | This is a simple PowerShell script to destroy the infrastructure after you've used it. |
 | main.tf | Contains the actual resource definitions we're deploying |
-| main.tf.original | In many of the demos you will edit the main.tf file live.  This file will be used to overwrite main.tf afet the demo is done to reset your changes |
+| main.tf.original | In many of the demos you will edit the main.tf file live.  This file will be used to overwrite main.tf after the demo is done to reset your changes |
 | providers.tf | Contains the definitions for any providers |
 | terraform.tfvars | Declares any additional variables used in the demo |
 | variables.tf | Declares any variables used in the demo, including "densify_recommendations" |
