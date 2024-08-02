@@ -7,14 +7,15 @@ This repo contains a set of Terraform / OpenTofu infrastructure files and script
 
 Folders
 -------
-    credentials
-This folder holds your GCP credentials.  
-Iaas-AWS - Builds 3 VMs in AWS  
-Iaas-Azure - Builds 3 VMs in Azure  
-Iaas-GCE - Builds 3 VMs in GCE  
-k8s-AKS - Builds a simple 2-node AKS cluster in Azure  
-k8s-EKS - Builds a simple 2-node EKS cluster in AWS  
-k8s-GKE - Builds a simple 2-node EKS cluster in GCP  
+| Folder | Contents
+| ------ | --------
+| credentials | This folder holds your GCP credentials |
+| Iaas-AWS | Builds 3 VMs in AWS |
+| Iaas-Azure | Builds 3 VMs in Azure |
+| Iaas-GCE | Builds 3 VMs in GCE |
+| k8s-AKS | Builds a simple 2-node AKS cluster in Azure |
+| k8s-EKS | Builds a simple 2-node EKS cluster in AWS |
+| k8s-GKE | Builds a simple 2-node EKS cluster in GCP |
 
 Credentials
 -----------
