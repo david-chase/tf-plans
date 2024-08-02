@@ -1,21 +1,3 @@
-variable "owner" {
-  type = string
-  default = "dchase"
-}
-
-provider "aws" {
-  region = "us-east-2"
-  shared_config_files      = ["~/.aws/config"]
-  shared_credentials_files = ["~/.aws/credentials"]
-  profile                  = "default"
-}
-
-# This section declares the variable densify_recommendations.  A Terraform export of your Densify recommendations should reside
-# in the cuirrent folder in a file named densify.auto.tfvars
-variable "densify_recommendations" {
-  type = any
-}
-
 resource "aws_instance" "ec-pro-duct-1272" {
   ami = "ami-0900fe555666598a2"
   tags =  {

@@ -1,5 +1,6 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
+locals {
+  cluster_name = "k8master"
+}
 
 # Define default tags
 variable "default_aws_tags" {
@@ -13,10 +14,6 @@ variable "default_aws_tags" {
   }
 }
 
-provider "aws" {
-  region = var.region
-}
-
 # Filter out local zones, which are not currently supported 
 # with managed node groups
 data "aws_availability_zones" "available" {
@@ -24,15 +21,6 @@ data "aws_availability_zones" "available" {
     name   = "opt-in-status"
     values = ["opt-in-not-required"]
   }
-}
-
-locals {
-  cluster_name = "k8master"
-}
-
-resource "random_string" "suffix" {
-  length  = 8
-  special = false
 }
 
 module "vpc" {
