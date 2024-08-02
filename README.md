@@ -10,12 +10,17 @@ Folders
 | Folder | Contents
 | ------ | --------
 | credentials | This folder holds your GCP credentials |
+| ExportTo-tf | This contains a PowerShell script that exports a Densify analysis in .tf format.  You don't need to directly execute this script. |
 | Iaas-AWS | Builds 3 VMs in AWS |
 | Iaas-Azure | Builds 3 VMs in Azure |
 | Iaas-GCE | Builds 3 VMs in GCE |
 | k8s-AKS | Builds a simple 2-node AKS cluster in Azure |
 | k8s-EKS | Builds a simple 2-node EKS cluster in AWS |
 | k8s-GKE | Builds a simple 2-node EKS cluster in GCP |
+
+IaaS Demos
+----------
+Each of these folders creates a three-VM demo environment in one of the three clouds.  To demo using Terraform 
 
 Credentials
 -----------
@@ -29,7 +34,7 @@ The contents of each folder are similar and follow this general format:
 | File | Purpose |
 | ---- | ------- |
 | build.ps1 | This is a simple PowerShell script to build the infrastructure |
-| densify.auto.tfvars | Contains an export of a single Densify analysis in Terraform format^* |
+| densify.auto.tfvars | Contains an export of a single Densify analysis in Terraform format |
 | destroy.ps1 | This is a simple PowerShell script to destroy the infrastructure after you've used it. |
 | main.tf | Contains the actual resource definitions we're deploying |
 | main.tf.original | In many of the demos you will edit the main.tf file live.  This file will be used to overwrite main.tf afet the demo is done to reset your changes |
