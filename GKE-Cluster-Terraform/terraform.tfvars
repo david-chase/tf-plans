@@ -1,5 +1,5 @@
 # Specify path of service account private-key json file
-credentials_file = "./gke-testing-430322-6b0a371c460a.json"
+credentials_file = "../credentials/gcp-credentials.json"
 
 # GKE Cluster Name
 cluster_name = "k8master"

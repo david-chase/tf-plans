@@ -3,14 +3,23 @@
 #-------------------------------------------------------------------
 
 param (
-    [Parameter( Mandatory )][string]$instance="",
-    [string]$user="dchase@densify.com", # Edit this value.  Add your Densify username
-    [string]$pass="hJ7%oPO7pPYVU)VO", # Edit this value.  Add your Densify password
+    [Parameter( Mandatory )]
+    [string]$instance="",
+    [string]$user="", 
+    [string]$pass="",
     [string]$analysisId="",  
     [string]$cloud=""
 )
 
 $aClouds = @( "cloud/aws", "cloud/azure", "cloud/gcp", "containers/kubernetes" )
+
+# Suss out the user instance, user name, and password
+if( -not $user ) { $user = $env:DensifyUser }
+if( -not $pass ) { $pass = $env:DensifyPass }
+if( -not $instance ) { $instance = Read-Host -Prompt "Enter instance name" }
+if( ( -not $user ) -or ( -not $pass ) ) { Write-Host; Write-Host "Note: To remember your Densify credentials you may set environment variables named DensifyUser and DensifyPass respectively"; Write-Host }
+if( -not $user ) { $user = Read-Host -Prompt "Enter your Densify user id" }
+if( -not $pass ) { $pass = Read-Host -Prompt "Enter your Densify password" }
 
 # Instances can be specified as fully qualified or in short form.  If user specified it in short form, add the .densify.com part
 # If they specified it in long form, just parse out the short form and store it in $sInstanceTitle.  We'll use this later
