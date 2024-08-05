@@ -16,6 +16,14 @@ resource "google_compute_instance" "example" {
   network_interface {
     network = "default"
   }
+
+  # Labels to apply to the instance
+  labels = {
+    owner = var.owner
+    purpose = "Terraform demo"
+    createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
+  }
+
 }
 
 # -------------------------------------
@@ -36,6 +44,14 @@ resource "google_compute_instance" "example1" {
   network_interface {
     network = "default"
   }
+
+  # Labels to apply to the instance
+  labels = {
+    owner = var.owner
+    purpose = "Terraform demo"
+    createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
+  }
+
 }
 
 # -------------------------------------
@@ -56,4 +72,12 @@ resource "google_compute_instance" "example2" {
   network_interface {
     network = "default"
   }
+
+  # Labels to apply to the instance
+  labels = {
+    owner = var.owner
+    purpose = "Terraform demo"
+    createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
+  }
+  
 }

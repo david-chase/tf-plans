@@ -3,3 +3,8 @@
 variable "densify_recommendations" {
   type = any
 }
+
+variable "owner" {
+  type = string
+  default = "dchase"
+}

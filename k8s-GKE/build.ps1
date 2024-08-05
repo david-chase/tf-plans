@@ -1,3 +1,7 @@
+Write-Host ""
+Write-Host ::: Build GKE Cluster v1 ::: -ForegroundColor Cyan
+Write-Host ""
+
 $sGkeProject = "gke-testing-430322"
 $sClusterName = "k8master"
 $sRegion = "northamerica-northeast2-a"

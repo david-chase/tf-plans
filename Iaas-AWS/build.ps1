@@ -1,3 +1,7 @@
+Write-Host ""
+Write-Host ::: Build AWS Iaas Environment v1 ::: -ForegroundColor Cyan
+Write-Host ""
+
 # Start a timer
 $oStopWatch = New-Object -TypeName System.Diagnostics.Stopwatch
 $oStopWatch.Start()

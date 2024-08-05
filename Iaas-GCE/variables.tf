@@ -5,3 +5,8 @@ variable "credentials_file" { }
 variable "densify_recommendations" {
   type = any
 }
+
+variable "owner" {
+  type = string
+  default = "dchase"
+}

@@ -12,3 +12,11 @@ output "kube_config" {
 output "key_data" {
   value = azapi_resource_action.ssh_public_key_gen.output.publicKey
 }
+
+output "resource_group_name" {
+  value = azurerm_resource_group.example.name
+}
+
+output "kubernetes_cluster_name" {
+  value = azurerm_kubernetes_cluster.example.name
+}

@@ -1,9 +1,13 @@
+# -------------------------------------
+# First VM
+# -------------------------------------
 resource "aws_instance" "ec-pro-duct-1272" {
   ami = "ami-0900fe555666598a2"
   tags =  {
     Name = "ec-pro-duct-1272"
     owner = var.owner
     purpose = "Terraform demo"
+    createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
   }
 
   # normal way of sizing an instance by hardcoding the size.
@@ -11,12 +15,16 @@ resource "aws_instance" "ec-pro-duct-1272" {
   # instance_type = var.densify_recommendations.ec-pro-duct-1272.recommendedType
 }
 
+# -------------------------------------
+# Second VM
+# -------------------------------------
 resource "aws_instance" "ex-prepro-dvc-866" {
   ami = "ami-0900fe555666598a2"
   tags =  {
     Name = "ex-prepro-dvc-866"
     owner = var.owner
     purpose = "Terraform demo"
+    createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
   }
 
   # normal way of sizing an instance by hardcoding the size.
@@ -24,12 +32,16 @@ resource "aws_instance" "ex-prepro-dvc-866" {
   # instance_type = var.densify_recommendations.ex-prepro-dvc-866.recommendedType
 }
 
+# -------------------------------------
+# Third VM
+# -------------------------------------
 resource "aws_instance" "ex-prepro-fifo-420" {
   ami = "ami-0900fe555666598a2"
   tags =  {
     Name = "ex-prepro-fifo-420"
     owner = var.owner
     purpose = "Terraform demo"
+    createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
   }
 
   # normal way of sizing an instance by hardcoding the size.

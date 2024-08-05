@@ -45,7 +45,7 @@ resource "azurerm_windows_virtual_machine" "example" {
   location            = azurerm_resource_group.rg.location
   size                = "Standard_A4_v2"
   # size                = var.densify_recommendations.st01-dev-imco-321.recommendedType
-  admin_username      = "dchase"
+  admin_username      = var.owner
   admin_password      = "Passw0rd!"
   availability_set_id = azurerm_availability_set.DemoAset.id
   network_interface_ids = [
@@ -62,6 +62,12 @@ resource "azurerm_windows_virtual_machine" "example" {
     offer     = "WindowsServer"
     sku       = "2016-Datacenter"
     version   = "latest"
+  }
+
+  tags = {
+    owner = var.owner
+    purpose = "Terraform demo"
+    createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
   }
 }
 
@@ -87,7 +93,7 @@ resource "azurerm_windows_virtual_machine" "example1" {
     location            = azurerm_resource_group.rg.location
     size                = "Standard_A4_v2"
     # size                = var.densify_recommendations.st01-dev-kotl-413.recommendedType
-    admin_username      = "dchase"
+    admin_username      = var.owner
     admin_password      = "Passw0rd!"
     availability_set_id = azurerm_availability_set.DemoAset.id
     network_interface_ids = [
@@ -104,6 +110,12 @@ resource "azurerm_windows_virtual_machine" "example1" {
       offer     = "WindowsServer"
       sku       = "2016-Datacenter"
       version   = "latest"
+    }
+
+    tags = {
+      owner = var.owner
+      purpose = "Terraform demo"
+      createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
     }
   }
 
@@ -129,7 +141,7 @@ resource "azurerm_windows_virtual_machine" "example2" {
     location            = azurerm_resource_group.rg.location
     size                = "standard_a2_v2"
     # size                = var.densify_recommendations.st01-prepro-duct-323.recommendedType
-    admin_username      = "dchase"
+    admin_username      = var.owner
     admin_password      = "Passw0rd!"
     availability_set_id = azurerm_availability_set.DemoAset.id
     network_interface_ids = [
@@ -146,5 +158,11 @@ resource "azurerm_windows_virtual_machine" "example2" {
     offer     = "WindowsServer"
     sku       = "2016-Datacenter"
     version   = "latest"
+    }
+
+    tags = {
+      owner = var.owner
+      purpose = "Terraform demo"
+      createdate = formatdate( "YYYY-MMM-DD hh:mm", timestamp() )
     }
 }

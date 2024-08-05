@@ -1,3 +1,7 @@
+Write-Host ""
+Write-Host ::: Destroy GKE Cluster v1 ::: -ForegroundColor Cyan
+Write-Host ""
+
 $sClusterName = "k8master"
 
 Write-Host Destroying environment -ForegroundColor Cyan
