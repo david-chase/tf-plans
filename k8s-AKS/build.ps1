@@ -9,9 +9,6 @@ $sResourceGroup = "k8master-rg"
 $oStopWatch = New-Object -TypeName System.Diagnostics.Stopwatch
 $oStopWatch.Start()
 
-# We can't have the Kubernetes resources in the plan or they will error out because the cluster isn't even created yet.  So delete them.
-rm qa-inc.tf
-
 Write-Host Intializing Terraform`n -ForegroundColor Cyan
 terraform init -upgrade
 
@@ -22,12 +19,14 @@ Write-Host `nUpdating ~/.kube/config`n -ForegroundColor Cyan
 az aks get-credentials --resource-group $sResourceGroup --name $sClusterName --file ~\.kube\config
 
 # Now we can create the Kubernetes resources
-# This first line is a hack.  Terraform seems to choke on creating namespaces, at least in Azure
+# This first line is a hack.  Terraform seems to choke on creating namespaces
 kubectl create ns qa-inc
+cd qa-inc
 Write-Host `nCopying qa-inc.tf.original to qa-inc.tf -ForegroundColor Cyan
 cp qa-inc.tf.original qa-inc.tf
 Write-Host `nRe-applying Terraform plan with Kuberetes resources`n -ForegroundColor Cyan
-terraform apply -auto-approve
+# terraform apply -auto-approve
+cd ..
 
 # Stop the timer
 $oStopWatch.Stop()
