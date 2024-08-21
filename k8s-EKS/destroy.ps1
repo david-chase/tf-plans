@@ -1,17 +1,16 @@
 Write-Host ""
-Write-Host ::: Destroy EKS Cluster v1 ::: -ForegroundColor Cyan
+Write-Host ::: Destroy EKS Cluster v2 ::: -ForegroundColor Cyan
 Write-Host ""
 
-$sClusterName = $(terraform output -raw cluster_name)
+# Delete the kubeconfig context
+kubectl config delete-context ${kubectl config current-context}
 
-Write-Host Destroying environment -ForegroundColor Cyan
+Write-Host Destroying environment`n -ForegroundColor Cyan
 terraform apply -destroy -auto-approve
 
-Write-Host
-
-Write-Host Deleting context $sClusterName from kubeconfig -ForegroundColor Cyan
-kubectl config delete-context $sClusterName
-
-aws eks --region $(terraform output -raw region) update-kubeconfig --name $sClusterName
+# Write-Host Deleting eks-config.txt -ForegroundColor Cyan
+# rm ~/.kube/eks-config.txt
+# $env:KUBECONFIG = $env:OLD_KUBECONFIG
+# $env:OLD_KUBECONFIG = ""
 
 [console]::beep(500,300)

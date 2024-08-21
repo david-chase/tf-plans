@@ -12,6 +12,9 @@ resource "kubernetes_manifest" "namespace_qa_inc" {
 }
 
 resource "kubernetes_manifest" "deployment_qa_inc_webserver_deployment" {
+  # Don't build this resource until the namespace has been created
+  depends_on = [ kubernetes_manifest.namespace_qa_inc ]
+  
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "Deployment"
@@ -73,6 +76,9 @@ resource "kubernetes_manifest" "deployment_qa_inc_webserver_deployment" {
 }
 
 resource "kubernetes_manifest" "service_qa_inc_den_web_svc" {
+  # Don't build this resource until the namespace has been created
+  depends_on = [ kubernetes_manifest.namespace_qa_inc ]
+  
   manifest = {
     "apiVersion" = "v1"
     "kind" = "Service"
@@ -97,6 +103,9 @@ resource "kubernetes_manifest" "service_qa_inc_den_web_svc" {
 }
 
 resource "kubernetes_manifest" "ingress_qa_inc_den_web_ingress" {
+  # Don't build this resource until the namespace has been created
+  depends_on = [ kubernetes_manifest.namespace_qa_inc ]
+  
   manifest = {
     "apiVersion" = "networking.k8s.io/v1"
     "kind" = "Ingress"
@@ -131,6 +140,9 @@ resource "kubernetes_manifest" "ingress_qa_inc_den_web_ingress" {
 }
 
 resource "kubernetes_manifest" "deployment_qa_inc_audit_deployment" {
+  # Don't build this resource until the namespace has been created
+  depends_on = [ kubernetes_manifest.namespace_qa_inc ]
+  
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "Deployment"
@@ -186,6 +198,9 @@ resource "kubernetes_manifest" "deployment_qa_inc_audit_deployment" {
 }
 
 resource "kubernetes_manifest" "deployment_qa_inc_environment_deployment" {
+  # Don't build this resource until the namespace has been created
+  depends_on = [ kubernetes_manifest.namespace_qa_inc ]
+  
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "Deployment"
@@ -241,6 +256,9 @@ resource "kubernetes_manifest" "deployment_qa_inc_environment_deployment" {
 }
 
 resource "kubernetes_manifest" "deployment_qa_inc_loader_deployment" {
+  # Don't build this resource until the namespace has been created
+  depends_on = [ kubernetes_manifest.namespace_qa_inc ]
+  
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "Deployment"
@@ -296,6 +314,9 @@ resource "kubernetes_manifest" "deployment_qa_inc_loader_deployment" {
 }
 
 resource "kubernetes_manifest" "deployment_qa_inc_scheduler_deployment" {
+  # Don't build this resource until the namespace has been created
+  depends_on = [ kubernetes_manifest.namespace_qa_inc ]
+  
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "Deployment"

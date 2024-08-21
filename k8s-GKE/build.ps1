@@ -1,36 +1,79 @@
+cls
 Write-Host ""
 Write-Host ::: Build GKE Cluster v2 ::: -ForegroundColor Cyan
 Write-Host ""
 
-$sGkeProject = "gke-testing-430322"
-$sClusterName = "k8master"
-$sRegion = "northamerica-northeast2-a"
+# Prompt for the user's name
+Write-Host Please type your userid.  This is used to tag these cloud resources as yours -ForegroundColor Green 
+$sOwner = Read-Host
+$env:TF_VAR_owner = $sOwner
+
+# Ask if we want to install kube-prometheus-stack
+Write-Host Install kube-prometheus-stack? [Y/n] -ForegroundColor Green -NoNewline
+$sDeployProm = Read-Host
+if( $sDeployProm.ToLower() -eq "n" ) { 
+    $bDeployProm = $false
+    Write-Host "No" -ForegroundColor Cyan 
+} 
+else { 
+    $bDeployProm = $true
+    Write-Host "Yes" -ForegroundColor Cyan
+}
+
+# Ask if we want to install qa-inc namespace
+Write-Host Install qa-inc demo namespace? [Y/n] -ForegroundColor Green -NoNewline
+$sDeployQa = Read-Host
+if( $sDeployQa.ToLower() -eq "n" ) { 
+    $bDeployQa = $false
+    Write-Host "No" -ForegroundColor Cyan 
+} 
+else { 
+    $bDeployQa = $true
+    Write-Host "Yes" -ForegroundColor Cyan
+}
 
 # Start a timer
 $oStopWatch = New-Object -TypeName System.Diagnostics.Stopwatch
 $oStopWatch.Start()
 
-Write-Host `nIntializing Terraform -ForegroundColor Cyan
+# Terraform init
+Write-Host `nInitializing Terraform`n -ForegroundColor Cyan
 terraform init -upgrade
+if( $LastExitCode ) {
+    Write-Error "Terraform init finished with error code $LastExitCode.  Exiting."
+    [console]::beep(900,300)
+    Exit
+}
 
-Write-Host `nApplying Terraform plan -ForegroundColor Cyan
-terraform apply --auto-approve
-
-Write-Host `nSetting GCP project -ForegroundColor Cyan
-gcloud config set project $sGkeProject
-
-Write-Host `nUpdating ~/.kube/config -ForegroundColor Cyan
-gcloud container clusters get-credentials $sClusterName --region=$sRegion
-
-# Now we can create the Kubernetes resources
-# This first line is a hack.  Terraform seems to choke on creating namespaces
-kubectl create ns qa-inc
-cd qa-inc
-Write-Host `nCopying qa-inc.tf.original to qa-inc.tf -ForegroundColor Cyan
-cp qa-inc.tf.original qa-inc.tf
-Write-Host `nRe-applying Terraform plan with Kuberetes resources`n -ForegroundColor Cyan
+# Terraform plan
+$iResult = Write-Host `nApplying Terraform plan`n -ForegroundColor Cyan
 terraform apply -auto-approve
-cd ..
+if( $LastExitCode ) {
+    Write-Error "Terraform plan finished with error code $LastExitCode.  Exiting."
+    [console]::beep(900,300)
+    Exit
+}
+
+Write-Host `nUpdating kubeconfig`n -ForegroundColor Cyan
+gcloud container clusters get-credentials $(terraform output -raw kubernetes_cluster_name) --region $(terraform output -raw region)
+
+# Write-Host `nCreating namespace`n -ForegroundColor Cyan
+# kubectl create ns qa-inc
+
+if( $bDeployProm ) {
+    & ../install-kube-prometheus-stack.ps1
+} # if( $bDeployProm )
+
+if( $bDeployQa ) {
+    cd qa-inc
+    # Reset qa-inc.tf in case were were tampering with it last time we did the demo
+    cp qa-inc.tf.original qa-inc.tf
+    Write-Host `nIntializing Terraform`n -ForegroundColor Cyan
+    terraform init -upgrade
+
+    Write-Host `nApplying Terraform plan`n -ForegroundColor Cyan
+    terraform apply -auto-approve
+} # if( $bDeployQa )
 
 # Stop the timer
 $oStopWatch.Stop()
