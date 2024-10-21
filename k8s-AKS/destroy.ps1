@@ -3,7 +3,8 @@ Write-Host ::: Destroy AKS Cluster v2 ::: -ForegroundColor Cyan
 Write-Host ""
 
 # Delete the kubeconfig context
-kubectl config delete-context ${kubectl config current-context}
+$sCurrentContext = kubectl config current-context
+kubectl config delete-context $sCurrentContext
 
 Write-Host Destroying environment -ForegroundColor Cyan
 terraform apply -destroy -auto-approve

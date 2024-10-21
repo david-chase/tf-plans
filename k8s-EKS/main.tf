@@ -38,8 +38,6 @@ variable "purpose" {
   default     = "Terraform demo"
 }
 
-
-
 # Filter out local zones, which are not currently supported 
 # with managed node groups
 data "aws_availability_zones" "available" {
@@ -182,20 +180,24 @@ module "eks" {
       name = "node-group-1"
 
       instance_types = [ var.instance_type ]
+      capacity_type  = "SPOT"
 
       min_size     = 1
       max_size     = 3
       desired_size = 1
+
     }
 
     two = {
       name = "node-group-2"
 
       instance_types = [ var.instance_type ]
+      capacity_type  = "SPOT"
 
       min_size     = 1
       max_size     = 2
       desired_size = 1
+   
     }
     
     tags =  {
