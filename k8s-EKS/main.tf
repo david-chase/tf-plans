@@ -186,6 +186,9 @@ module "eks" {
       max_size     = 3
       desired_size = 1
 
+ #     labels = {
+ #       "eks.amazonaws.com/nodegroup" = "node-group-1"
+ #     }
     }
 
     two = {
@@ -197,7 +200,10 @@ module "eks" {
       min_size     = 1
       max_size     = 2
       desired_size = 1
-   
+
+#      labels = {
+#        "eks.amazonaws.com/nodegroup" = "node-group-2"
+#      }      
     }
     
     tags =  {
