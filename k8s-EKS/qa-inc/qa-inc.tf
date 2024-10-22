@@ -14,7 +14,7 @@ resource "kubernetes_manifest" "namespace_qa_inc" {
 resource "kubernetes_manifest" "deployment_qa_inc_webserver_deployment" {
   # Don't build this resource until the namespace has been created
   depends_on = [ kubernetes_manifest.namespace_qa_inc ]
-
+  
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "Deployment"
@@ -52,19 +52,19 @@ resource "kubernetes_manifest" "deployment_qa_inc_webserver_deployment" {
                   # ----------
                   # Edit here
                   # ----------
-                  # "cpu" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedCpuLimit ) }m"
-                  # "memory" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedMemLimit ) }Mi"
-                  "cpu" = "200m"
-                  "memory" = "200Mi"
+                  "cpu" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedCpuLimit ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedMemLimit ) }Mi"
+                  # "cpu" = "200m"
+                  # "memory" = "200Mi"
                 }
                 "requests" = {
                   # ----------
                   # Edit here
                   # ----------
-                  # "cpu" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedCpuRequest ) }m"
-                  # "memory" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedMemRequest ) }Mi"
-                  "cpu" = "100m"
-                  "memory" = "100Mi"
+                  "cpu" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedCpuRequest ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedMemRequest ) }Mi"
+                  # "cpu" = "100m"
+                  # "memory" = "100Mi"
                 }
               }
             },
@@ -171,12 +171,22 @@ resource "kubernetes_manifest" "deployment_qa_inc_audit_deployment" {
               "name" = "den-audit"
               "resources" = {
                 "limits" = {
-                  "cpu" = "200m"
-                  "memory" = "200Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.audit-deployment__den-audit.recommendedCpuLimit ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.audit-deployment__den-audit.recommendedMemLimit ) }Mi"
+                  # "cpu" = "200m"
+                  # "memory" = "200Mi"
                 }
                 "requests" = {
-                  "cpu" = "100m"
-                  "memory" = "100Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.audit-deployment__den-audit.recommendedCpuRequest ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.audit-deployment__den-audit.recommendedMemRequest ) }Mi"
+                  # "cpu" = "100m"
+                  # "memory" = "100Mi"
                 }
               }
             },
@@ -219,12 +229,22 @@ resource "kubernetes_manifest" "deployment_qa_inc_environment_deployment" {
               "name" = "den-env"
               "resources" = {
                 "limits" = {
-                  "cpu" = "200m"
-                  "memory" = "200Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.environment-deployment__den-env.recommendedCpuLimit ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.environment-deployment__den-env.recommendedMemLimit ) }Mi"
+                  # "cpu" = "200m"
+                  # "memory" = "200Mi"
                 }
                 "requests" = {
-                  "cpu" = "100m"
-                  "memory" = "100Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.environment-deployment__den-env.recommendedCpuRequest ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.environment-deployment__den-env.recommendedMemRequest ) }Mi"
+                  # "cpu" = "100m"
+                  # "memory" = "100Mi"
                 }
               }
             },
@@ -267,12 +287,22 @@ resource "kubernetes_manifest" "deployment_qa_inc_loader_deployment" {
               "name" = "den-loader"
               "resources" = {
                 "limits" = {
-                  "cpu" = "200m"
-                  "memory" = "200Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.loader-deployment__den-loader.recommendedCpuLimit ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.loader-deployment__den-loader.recommendedMemLimit ) }Mi"
+                  # "cpu" = "200m"
+                  # "memory" = "200Mi"
                 }
                 "requests" = {
-                  "cpu" = "100m"
-                  "memory" = "100Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.loader-deployment__den-loader.recommendedCpuRequest ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.loader-deployment__den-loader.recommendedMemRequest ) }Mi"
+                  # "cpu" = "100m"
+                  # "memory" = "100Mi"
                 }
               }
             },
@@ -315,12 +345,22 @@ resource "kubernetes_manifest" "deployment_qa_inc_scheduler_deployment" {
               "name" = "den-sched"
               "resources" = {
                 "limits" = {
-                  "cpu" = "200m"
-                  "memory" = "200Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.scheduler-deployment__den-sched.recommendedCpuLimit ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.scheduler-deployment__den-sched.recommendedMemLimit ) }Mi"
+                  # "cpu" = "200m"
+                  # "memory" = "200Mi"
                 }
                 "requests" = {
-                  "cpu" = "100m"
-                  "memory" = "100Mi"
+                  # ----------
+                  # Edit here
+                  # ----------
+                  "cpu" = "${ floor( var.densify_recommendations.scheduler-deployment__den-sched.recommendedCpuRequest ) }m"
+                  "memory" = "${ floor( var.densify_recommendations.scheduler-deployment__den-sched.recommendedMemRequest ) }Mi"
+                  # "cpu" = "100m"
+                  # "memory" = "100Mi"
                 }
               }
             },
