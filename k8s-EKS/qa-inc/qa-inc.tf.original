@@ -52,8 +52,6 @@ resource "kubernetes_manifest" "deployment_qa_inc_webserver_deployment" {
                   # ----------
                   # Edit here
                   # ----------
-                  # "cpu" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedCpuLimit ) }m"
-                  # "memory" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedMemLimit ) }Mi"
                   "cpu" = "200m"
                   "memory" = "200Mi"
                 }
@@ -61,8 +59,6 @@ resource "kubernetes_manifest" "deployment_qa_inc_webserver_deployment" {
                   # ----------
                   # Edit here
                   # ----------
-                  # "cpu" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedCpuRequest ) }m"
-                  # "memory" = "${ floor( var.densify_recommendations.webserver-deployment__den-web.recommendedMemRequest ) }Mi"
                   "cpu" = "100m"
                   "memory" = "100Mi"
                 }
@@ -199,7 +195,7 @@ resource "kubernetes_manifest" "deployment_qa_inc_environment_deployment" {
       "namespace" = "qa-inc"
     }
     "spec" = {
-      "replicas" = 3
+      "replicas" = 1
       "selector" = {
         "matchLabels" = {
           "app" = "den-env"
@@ -247,7 +243,7 @@ resource "kubernetes_manifest" "deployment_qa_inc_loader_deployment" {
       "namespace" = "qa-inc"
     }
     "spec" = {
-      "replicas" = 2
+      "replicas" = 1
       "selector" = {
         "matchLabels" = {
           "app" = "den-loader"

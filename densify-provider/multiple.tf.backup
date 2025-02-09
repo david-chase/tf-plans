@@ -1,0 +1,46 @@
+terraform {
+  required_providers {
+    densify = {
+      source = "densify.com/provider/densify"
+    }
+  }
+}
+ 
+# Define a variable for the system names
+variable "system_names" {
+  type    = list(string)
+  default = [
+    "audit-deployment",
+    "environment-deployment",
+    "loader-deployment"
+  ]
+}
+ 
+# Use a provider alias for each system_name
+provider "densify" {
+  # densify_instance = "<instance>.densify.com:8443"
+  # username         = "username"
+  # password         = "password"
+  # tech_platform    = "aws"
+  # account_number   = "account-num"
+  tech_platform   = "kubernetes"
+  cluster         = "k8master"
+  namespace       = "qa-inc"
+  controller_type = "deployment"
+  for_each = toset(var.system_names)
+  pod_name        = each.key
+  # system_name      = each.key
+}
+ 
+# Example resource or data block (adapt as needed)
+data "densify_cloud" "optimization" {
+  for_each = toset(var.system_names)
+  provider = densify[each.key]
+}
+ 
+# Output all optimizations for validation
+output "data_cloud" {
+  value = {
+    for k, v in data.densify_cloud.optimization : k => v
+  }
+}

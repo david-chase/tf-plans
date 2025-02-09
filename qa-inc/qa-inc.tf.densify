@@ -209,7 +209,7 @@ resource "kubernetes_manifest" "deployment_qa_inc_environment_deployment" {
       "namespace" = "qa-inc"
     }
     "spec" = {
-      "replicas" = 3
+      "replicas" = 1
       "selector" = {
         "matchLabels" = {
           "app" = "den-env"
@@ -267,7 +267,7 @@ resource "kubernetes_manifest" "deployment_qa_inc_loader_deployment" {
       "namespace" = "qa-inc"
     }
     "spec" = {
-      "replicas" = 2
+      "replicas" = 1
       "selector" = {
         "matchLabels" = {
           "app" = "den-loader"
