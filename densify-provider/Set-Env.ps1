@@ -1,3 +1,3 @@
-$env:DENSIFY_INSTANCE="https://partner1.densify.com"
-$env:DENSIFY_USERNAME="dchase@densify.com"
-$env:DENSIFY_PASSWORD="mI9@YUy26WmZ@To@"
+$env:DENSIFY_INSTANCE="<Densify Instance URL>"
+$env:DENSIFY_USERNAME="<your username>"
+$env:DENSIFY_PASSWORD="<your password"
